@@ -44,4 +44,19 @@ end
     end
   end
 
+  context 'editing restaurants' do
+    before { Restaurant.create name: 'Kung Food', description: "Generic food" }
+
+    scenario 'let a user edit a restaurant' do
+      visit 'restaurants'
+      click_link 'Edit Kung Food'
+      fill_in 'Name', with: 'Kung F-ing amazing food'
+      fill_in 'Description', with: 'Proper tasty'
+      click_button 'Update Restaurant'
+      expect(page).to have_content 'Kung F-ing amazing food'
+      expect(page).to have_content 'Proper tasty'
+      expect(current_path).to eq "/restaurants"
+    end
+  end
+
 end

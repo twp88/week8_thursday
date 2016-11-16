@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
+    @reviews = Review.all
   end
 
   def create
@@ -9,16 +10,12 @@ class RestaurantsController < ApplicationController
     redirect_to '/restaurants'
   end
 
-  def restaurant_params
-    params.require(:restaurant).permit(:name, :description)
+  def new
+    @restaurant = Restaurant.new
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
-  end
-
-  def new
-    @restaurant = Restaurant.new
   end
 
   def edit
@@ -38,5 +35,9 @@ class RestaurantsController < ApplicationController
     flash[:notice] = 'Restaurant deleted successfully'
     redirect_to '/restaurants'
   end
-  
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :description)
+  end
+
 end

@@ -62,7 +62,7 @@ end
   context 'deleting restaurants' do
     before { Restaurant.create name: 'KFC', description: 'Deep fried badness' }
 
-    scenario 'removes a restaurant when a user click s a delete link' do
+    scenario 'removes a restaurant when a user clicks a delete link' do
       visit '/restaurants'
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'

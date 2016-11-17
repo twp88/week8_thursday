@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  devise_scope :user do
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :facebook_destroy_user_session
+  end
+
+  get '/auth/:provider/callback' => 'authentications#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -19,6 +26,7 @@ Rails.application.routes.draw do
     resources :restaurants do
       resources :reviews
     end
+
 
   # Example resource route with options:
   #   resources :products do

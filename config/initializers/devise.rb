@@ -19,6 +19,7 @@ Devise.setup do |config|
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
+  config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], :scope => 'email', callback_url: "http://localhost:3000/users/auth/facebook/callback"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

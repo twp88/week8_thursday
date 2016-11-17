@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'omniauth-facebook'
 gem 'omniauth'
-
 gem 'dotenv-rails'
 
 gem 'devise'
